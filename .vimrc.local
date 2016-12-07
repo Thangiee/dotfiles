@@ -1,0 +1,14 @@
+let mapleader = ';'
+imap jj <Esc>
+let $PYTHONPATH='/usr/lib/python3.4/site-packages'
+set guifont=Inconsolata-dz\ 14
+set t_Co=256
+colorscheme base16-monokai
+Plugin 'ensime/ensime-vim'
+Plugin 'derekwyatt/vim-scala'
+
+" Change Color when entering Insert Mode
+"autocmd InsertEnter * highlight  CursorLine ctermbg=None ctermfg=Red
+
+" Revert Color to default when leaving Insert Mode
+" autocmd InsertLeave * highlight  CursorLine ctermbg=None ctermfg=None

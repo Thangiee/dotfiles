@@ -50,6 +50,7 @@ plugins=(git autojump systemd zsh-syntax-highlighting)
 # User configuration
 
 # move to .zshenv
+export PATH="/opt/twitter/bin:/opt/twitter/sbin:/usr/local/mysql/bin:${HOME}/bin:/opt/twitter_mde/bin":$PATH
 # export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -66,6 +67,7 @@ export LC_ALL=en_US.UTF-8
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -81,7 +83,7 @@ export LC_ALL=en_US.UTF-8
 # aliases
 alias zshconfig="gvim ~/.zshrc"
 alias ohmyzsh="gvim ~/.oh-my-zsh"
-alias myeyes="redshift -O 3700k"
+alias myeyes="redshift -O 3700k &"
 alias sudo="sudo -E"
 alias hist="history | grep "
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -92,6 +94,8 @@ bindkey -v # enable vim
 bindkey -M viins 'jj' vi-cmd-mode # map to Ese
 bindkey "^?" backward-delete-char   # backspace deletion
 
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
@@ -101,11 +105,11 @@ zle-keymap-select () {
         if [ $KEYMAP = vicmd ]; then
             #normal mode
             #sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc
-            echo -ne "\033]12;Red\007"
+	    osascript -e 'tell application "Terminal" to set cursor color of window 0 to "red"'
         else
             #insert mode
             #sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_BLOCK/TERMINAL_CURSOR_SHAPE_IBEAM/' ~/.config/xfce4/terminal/terminalrc
-            echo -ne "\033]12;White\007"
+	    osascript -e 'tell application "Terminal" to set cursor color of window 0 to "green"'
         fi
     fi
 }
